@@ -15,10 +15,10 @@ for i in range(50):
         r = requests.get(url, headers=headers)
         soup = BeautifulSoup(r.text, 'html.parser')
 
-        info = soup.find_all('div', {'class': 'yv-bible-text'})
+        info = soup.find_all('div', {'class': 'yv'})
         
         #Creating new file to store data
-        with open('bible_Scrap.csv', 'w', encoding='utf8', newline='') as f:
+        with open('bs_yv', 'w', encoding='utf8', newline='') as f:
             thewriter = writer(f)
             header = ['title', 'heading', 'content']
             thewriter.writerow(header)
@@ -27,7 +27,7 @@ for i in range(50):
                     #content to be located
                     title = item.find('h1').text.replace('\n', '')
                     heading = item.find('span', {'class': 'heading'}).text.replace('\n', '')
-                    content = item.find('div', {'class': 'version vid1423 iso6393lug'}).text.replace('\n', '')
+                    content = item.find('div', {'class': 'vrsn'}).text.replace('\n', '')
                 
 
                     details =[title, heading, content]
